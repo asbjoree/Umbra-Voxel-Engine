@@ -109,7 +109,7 @@ void GetCameraRay(const in vec3 position, const in vec3 lookAt, out Ray currentR
 
 	vec2 coordNormalized = (gl_FragCoord.xy / resolution.xy * 2.0 - 1.0);
 	coordNormalized.x *= (resolution.x / resolution.y);
-	coordNormalized /= 1.731;
+	coordNormalized /= 1.73;
 	
 	currentRay.Origin = position;
 		   
