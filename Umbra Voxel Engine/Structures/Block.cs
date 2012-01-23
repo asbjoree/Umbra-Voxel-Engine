@@ -59,52 +59,67 @@ namespace Umbra.Structures
 
 		public byte[] Bytes { get { return new byte[] { (byte)InternalType, Data }; } }
 
-		//public byte GetFace(Direction direction)
-		//{
-		//    switch (InternalType)
-		//    {
-		//        case BlockType.Grass: return new byte[] { 1, 1, 0, 3, 1, 1 }[direction.Value];
-		//        case BlockType.Stone: return 2;
-		//        case BlockType.Dirt: return 3;
-		//        case BlockType.Water: return 4;
-		//        case BlockType.Sand: return 5;
-		//        case BlockType.Leaves: return 6;
-		//        case BlockType.Lava: return 7;
-		//        case BlockType.Log: return new byte[] { 8, 8, 9, 9, 8, 8 }[direction.Value];
-		//        default: return 0;
-		//    }
-		//}
+		public byte GetFace(Direction direction)
+		{
+			switch (InternalType)
+			{
+				case BlockType.Grass: return new byte[] { 1, 1, 0, 3, 1, 1 }[direction.Value];
+				case BlockType.Stone: return 2;
+				case BlockType.Dirt: return 3;
+				case BlockType.Water: return 4;
+				case BlockType.Sand: return 5;
+				case BlockType.Leaves: return 6;
+				case BlockType.Lava: return 7;
+				case BlockType.Log: return new byte[] { 8, 8, 9, 9, 8, 8 }[direction.Value];
+				default: return 0;
+			}
+		}
 
-		//static public byte GetFaceShade(BlockIndex index, Direction direction)
-		//{
-		//    if (Constants.Graphics.AmbientOcclusionEnabled)
-		//    {
-		//        double maxDist = 6;
-		//        double dist = 0;
-		//        dist += Lighting.GetRayIntersectDistance(maxDist, direction.GetVector3(), (index.Position + new Vector3d(0.5, 0.5, 0.5)) + direction.GetVector3() * 0.6);
+		static public byte GetFaceShade(BlockIndex index, Direction direction)
+		{
+			if (Constants.Graphics.AmbientOcclusionEnabled)
+			{
+				double maxDist = 6;
+				double dist = 0;
+				dist += Lighting.GetRayIntersectDistance(maxDist, direction.GetVector3(), (index.Position + new Vector3d(0.5, 0.5, 0.5)) + direction.GetVector3() * 0.6);
 
-		//        dist += Lighting.GetRayIntersectDistance(maxDist, direction.GetVector3() + direction.GetPerpendicularRight(), (index.Position + new Vector3d(0.5, 0.5, 0.5)) + direction.GetVector3() * 0.6);
-		//        dist += Lighting.GetRayIntersectDistance(maxDist, direction.GetVector3() - direction.GetPerpendicularRight(), (index.Position + new Vector3d(0.5, 0.5, 0.5)) + direction.GetVector3() * 0.6);
-		//        dist += Lighting.GetRayIntersectDistance(maxDist, direction.GetVector3() + direction.GetPerpendicularLeft(), (index.Position + new Vector3d(0.5, 0.5, 0.5)) + direction.GetVector3() * 0.6);
-		//        dist += Lighting.GetRayIntersectDistance(maxDist, direction.GetVector3() - direction.GetPerpendicularLeft(), (index.Position + new Vector3d(0.5, 0.5, 0.5)) + direction.GetVector3() * 0.6);
+				dist += Lighting.GetRayIntersectDistance(maxDist, direction.GetVector3() + direction.GetPerpendicularRight(), (index.Position + new Vector3d(0.5, 0.5, 0.5)) + direction.GetVector3() * 0.6);
+				dist += Lighting.GetRayIntersectDistance(maxDist, direction.GetVector3() - direction.GetPerpendicularRight(), (index.Position + new Vector3d(0.5, 0.5, 0.5)) + direction.GetVector3() * 0.6);
+				dist += Lighting.GetRayIntersectDistance(maxDist, direction.GetVector3() + direction.GetPerpendicularLeft(), (index.Position + new Vector3d(0.5, 0.5, 0.5)) + direction.GetVector3() * 0.6);
+				dist += Lighting.GetRayIntersectDistance(maxDist, direction.GetVector3() - direction.GetPerpendicularLeft(), (index.Position + new Vector3d(0.5, 0.5, 0.5)) + direction.GetVector3() * 0.6);
 
-		//        dist += Lighting.GetRayIntersectDistance(maxDist, direction.GetVector3() + direction.GetPerpendicularRight() + direction.GetPerpendicularLeft(), (index.Position + new Vector3d(0.5, 0.5, 0.5)) + direction.GetVector3() * 0.6);
-		//        dist += Lighting.GetRayIntersectDistance(maxDist, direction.GetVector3() + direction.GetPerpendicularRight() - direction.GetPerpendicularLeft(), (index.Position + new Vector3d(0.5, 0.5, 0.5)) + direction.GetVector3() * 0.6);
-		//        dist += Lighting.GetRayIntersectDistance(maxDist, direction.GetVector3() - direction.GetPerpendicularRight() + direction.GetPerpendicularLeft(), (index.Position + new Vector3d(0.5, 0.5, 0.5)) + direction.GetVector3() * 0.6);
-		//        dist += Lighting.GetRayIntersectDistance(maxDist, direction.GetVector3() - direction.GetPerpendicularRight() - direction.GetPerpendicularLeft(), (index.Position + new Vector3d(0.5, 0.5, 0.5)) + direction.GetVector3() * 0.6);
+				dist += Lighting.GetRayIntersectDistance(maxDist, direction.GetVector3() + direction.GetPerpendicularRight() + direction.GetPerpendicularLeft(), (index.Position + new Vector3d(0.5, 0.5, 0.5)) + direction.GetVector3() * 0.6);
+				dist += Lighting.GetRayIntersectDistance(maxDist, direction.GetVector3() + direction.GetPerpendicularRight() - direction.GetPerpendicularLeft(), (index.Position + new Vector3d(0.5, 0.5, 0.5)) + direction.GetVector3() * 0.6);
+				dist += Lighting.GetRayIntersectDistance(maxDist, direction.GetVector3() - direction.GetPerpendicularRight() + direction.GetPerpendicularLeft(), (index.Position + new Vector3d(0.5, 0.5, 0.5)) + direction.GetVector3() * 0.6);
+				dist += Lighting.GetRayIntersectDistance(maxDist, direction.GetVector3() - direction.GetPerpendicularRight() - direction.GetPerpendicularLeft(), (index.Position + new Vector3d(0.5, 0.5, 0.5)) + direction.GetVector3() * 0.6);
 
-		//        dist /= 9;
+				dist /= 9;
 
-		//        byte baseShade = (byte)Math.Ceiling(Math.Sqrt(Math.Pow(maxDist, 2)*3));
-		//        baseShade -= (byte)(dist / 21 * 10);
+				byte baseShade = (byte)Math.Ceiling(Math.Sqrt(Math.Pow(maxDist, 2)*3));
+				baseShade -= (byte)(dist / 21 * 10);
 
-		//        return baseShade;
-		//    }
-		//    else
-		//    {
-		//        return 0;
-		//    }
-		//}
+				return baseShade;
+			}
+			else
+			{
+				return 0;
+			}
+		}
+
+		public bool Translucency
+		{
+			get
+			{
+				switch (InternalType)
+				{
+					case BlockType.Air: return true;
+					case BlockType.Water: return true;
+					case BlockType.Leaves: return true;
+					case BlockType.Vacuum: return false;
+					default: return false;
+				}
+			}
+		}
 
 		public bool Solidity
 		{
@@ -119,6 +134,22 @@ namespace Umbra.Structures
 				}
 			}
 		}
+
+		public BlockVisibility Visibility
+		{
+			get
+			{
+				switch (InternalType)
+				{
+					case BlockType.Air: return BlockVisibility.Invisible;
+					case BlockType.Water: return BlockVisibility.Translucent;
+					case BlockType.Leaves: return BlockVisibility.Translucent;
+					case BlockType.Vacuum: return BlockVisibility.Invisible;
+					default: return BlockVisibility.Opaque;
+				}
+			}
+		}
+
 
 		public float Viscosity
 		{
@@ -270,22 +301,21 @@ namespace Umbra.Structures
 
 			for (int i = 0; i < returnValue.Length; i++)
 			{
-				returnValue[i] = Path + "air.png";
+				returnValue[i] = Path + "grass1.png";
 			}
 
-			returnValue[0] = Path + "air.png";
-			returnValue[1] = Path + "grass1.png";
-			returnValue[2] = Path + "grass2.png";
-			returnValue[3] = Path + "stone.png";
-			returnValue[4] = Path + "dirt.png";
-			returnValue[5] = Path + "water.png";
+			returnValue[Grass.GetFace(Direction.Up)] = Path + "grass1.png";
+			returnValue[Grass.GetFace(Direction.Right)] = Path + "grass2.png";
+			returnValue[Stone.GetFace(Direction.Up)] = Path + "stone.png";
+			returnValue[Dirt.GetFace(Direction.Up)] = Path + "dirt.png";
+			returnValue[Sand.GetFace(Direction.Up)] = Path + "sand.png";
 
-			returnValue[6] = Path + "sand.png";
-			returnValue[7] = Path + "leaves.png";
-			returnValue[8] = Path + "lava.png";
+			returnValue[Water.GetFace(Direction.Up)] = Path + "water.png";
+			returnValue[Leaves.GetFace(Direction.Up)] = Path + "leaves.png";
+			returnValue[Lava.GetFace(Direction.Up)] = Path + "lava.png";
 
-			returnValue[9] = Path + "log1.png";
-			returnValue[10] = Path + "log2.png";
+			returnValue[Log.GetFace(Direction.Right)] = Path + "log1.png";
+			returnValue[Log.GetFace(Direction.Up)] = Path + "log2.png";
 
 			return returnValue;
 		}

@@ -35,11 +35,6 @@ namespace Umbra.Implementations
 					return (object)LoadBitmap(assetName);
 				}
 
-				case ".c":
-				{
-					return (object)File.ReadAllText(assetName);
-				}
-
 				default:
 				{
 					throw new FileLoadException("The file extension \"" + extension + "\" is not supported!");

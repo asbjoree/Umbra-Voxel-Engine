@@ -1,8 +1,5 @@
 ﻿using System;
 using OpenTK.Graphics.OpenGL;
-using Umbra;
-using Umbra.Definitions.Globals;
-using Umbra.Implementations;
 
 namespace Umbra.Structures.Graphics
 {
@@ -12,7 +9,7 @@ namespace Umbra.Structures.Graphics
 
         static public void CompileShaders()
         {
-			DefaultShaderProgram = new Shader((string)Content.Load(Constants.Content.Shaders.Path + "shader.c"));
+			DefaultShaderProgram = new Shader(FragmentShader.Shader);
 
             GetVariables(DefaultShaderProgram.ProgramID);
         }
