@@ -286,6 +286,11 @@ namespace Umbra.Definitions.Globals
 				static public string CompassFilename = Path + @"compass.png";
 			}
 
+			static public class Shaders
+			{
+				static public string Path = MainPath + @"shaders/";
+			}
+
 			static public class Data
 			{
 				static public string WorldPath = Directory.GetCurrentDirectory() + @"/worlds/";

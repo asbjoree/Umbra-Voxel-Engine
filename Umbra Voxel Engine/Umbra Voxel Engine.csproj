@@ -97,7 +97,6 @@
     <Compile Include="Structures\Geometry\BoundingBox.cs" />
     <Compile Include="Structures\Block.cs" />
     <Compile Include="Structures\Engine.cs" />
-    <Compile Include="Structures\Graphics\FragmentShader.cs" />
     <Compile Include="Structures\Graphics\Shaders.cs" />
     <Compile Include="Utilities\Interpolation.cs" />
     <Compile Include="Utilities\Landscape\Utilities\NoiseMaps.cs" />
@@ -153,6 +152,9 @@
     <Content Include="content\textures\crosshair.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="content\textures\texture packs\standard\air.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="content\textures\texture packs\standard\dirt.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -184,6 +186,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="content\textures\texture packs\readme.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="content\shaders\shader.c">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

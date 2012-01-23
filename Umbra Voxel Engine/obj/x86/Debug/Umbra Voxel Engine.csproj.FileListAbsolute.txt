@@ -1,0 +1,23 @@
+D:\Personal\Documents\Visual Studio 2010\Projects\Fullscale\Umbra Technologies\Umbra Voxel Engine\OpenTK\Umbra Voxel Engine\Umbra Voxel Engine\bin\Debug\content\textures\compass.png
+D:\Personal\Documents\Visual Studio 2010\Projects\Fullscale\Umbra Technologies\Umbra Voxel Engine\OpenTK\Umbra Voxel Engine\Umbra Voxel Engine\bin\Debug\content\textures\crosshair.png
+D:\Personal\Documents\Visual Studio 2010\Projects\Fullscale\Umbra Technologies\Umbra Voxel Engine\OpenTK\Umbra Voxel Engine\Umbra Voxel Engine\bin\Debug\content\textures\texture packs\standard\dirt.png
+D:\Personal\Documents\Visual Studio 2010\Projects\Fullscale\Umbra Technologies\Umbra Voxel Engine\OpenTK\Umbra Voxel Engine\Umbra Voxel Engine\bin\Debug\content\textures\texture packs\standard\grass1.png
+D:\Personal\Documents\Visual Studio 2010\Projects\Fullscale\Umbra Technologies\Umbra Voxel Engine\OpenTK\Umbra Voxel Engine\Umbra Voxel Engine\bin\Debug\content\textures\texture packs\standard\grass2.png
+D:\Personal\Documents\Visual Studio 2010\Projects\Fullscale\Umbra Technologies\Umbra Voxel Engine\OpenTK\Umbra Voxel Engine\Umbra Voxel Engine\bin\Debug\content\textures\texture packs\standard\lava.png
+D:\Personal\Documents\Visual Studio 2010\Projects\Fullscale\Umbra Technologies\Umbra Voxel Engine\OpenTK\Umbra Voxel Engine\Umbra Voxel Engine\bin\Debug\content\textures\texture packs\standard\leaves.png
+D:\Personal\Documents\Visual Studio 2010\Projects\Fullscale\Umbra Technologies\Umbra Voxel Engine\OpenTK\Umbra Voxel Engine\Umbra Voxel Engine\bin\Debug\content\textures\texture packs\standard\log1.png
+D:\Personal\Documents\Visual Studio 2010\Projects\Fullscale\Umbra Technologies\Umbra Voxel Engine\OpenTK\Umbra Voxel Engine\Umbra Voxel Engine\bin\Debug\content\textures\texture packs\standard\log2.png
+D:\Personal\Documents\Visual Studio 2010\Projects\Fullscale\Umbra Technologies\Umbra Voxel Engine\OpenTK\Umbra Voxel Engine\Umbra Voxel Engine\bin\Debug\content\textures\texture packs\standard\sand.png
+D:\Personal\Documents\Visual Studio 2010\Projects\Fullscale\Umbra Technologies\Umbra Voxel Engine\OpenTK\Umbra Voxel Engine\Umbra Voxel Engine\bin\Debug\content\textures\texture packs\standard\stone.png
+D:\Personal\Documents\Visual Studio 2010\Projects\Fullscale\Umbra Technologies\Umbra Voxel Engine\OpenTK\Umbra Voxel Engine\Umbra Voxel Engine\bin\Debug\content\textures\texture packs\standard\water.png
+D:\Personal\Documents\Visual Studio 2010\Projects\Fullscale\Umbra Technologies\Umbra Voxel Engine\OpenTK\Umbra Voxel Engine\Umbra Voxel Engine\bin\Debug\content\textures\texture packs\readme.txt
+D:\Personal\Documents\Visual Studio 2010\Projects\Fullscale\Umbra Technologies\Umbra Voxel Engine\OpenTK\Umbra Voxel Engine\Umbra Voxel Engine\bin\Debug\Umbra Voxel Engine.exe
+D:\Personal\Documents\Visual Studio 2010\Projects\Fullscale\Umbra Technologies\Umbra Voxel Engine\OpenTK\Umbra Voxel Engine\Umbra Voxel Engine\bin\Debug\Umbra Voxel Engine.pdb
+D:\Personal\Documents\Visual Studio 2010\Projects\Fullscale\Umbra Technologies\Umbra Voxel Engine\OpenTK\Umbra Voxel Engine\Umbra Voxel Engine\bin\Debug\OpenTK.dll
+D:\Personal\Documents\Visual Studio 2010\Projects\Fullscale\Umbra Technologies\Umbra Voxel Engine\OpenTK\Umbra Voxel Engine\Umbra Voxel Engine\bin\Debug\OpenTK.xml
+D:\Personal\Documents\Visual Studio 2010\Projects\Fullscale\Umbra Technologies\Umbra Voxel Engine\OpenTK\Umbra Voxel Engine\Umbra Voxel Engine\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Personal\Documents\Visual Studio 2010\Projects\Fullscale\Umbra Technologies\Umbra Voxel Engine\OpenTK\Umbra Voxel Engine\Umbra Voxel Engine\obj\x86\Debug\Umbra.Launcher.resources
+D:\Personal\Documents\Visual Studio 2010\Projects\Fullscale\Umbra Technologies\Umbra Voxel Engine\OpenTK\Umbra Voxel Engine\Umbra Voxel Engine\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\Personal\Documents\Visual Studio 2010\Projects\Fullscale\Umbra Technologies\Umbra Voxel Engine\OpenTK\Umbra Voxel Engine\Umbra Voxel Engine\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\Personal\Documents\Visual Studio 2010\Projects\Fullscale\Umbra Technologies\Umbra Voxel Engine\OpenTK\Umbra Voxel Engine\Umbra Voxel Engine\obj\x86\Debug\Umbra Voxel Engine.exe
+D:\Personal\Documents\Visual Studio 2010\Projects\Fullscale\Umbra Technologies\Umbra Voxel Engine\OpenTK\Umbra Voxel Engine\Umbra Voxel Engine\obj\x86\Debug\Umbra Voxel Engine.pdb
