@@ -91,7 +91,7 @@ namespace Umbra.Implementations
     {
         static public void CreateTexture2D(out int textureID, string bitmapName)
         {
-            CreateTexture2D(out textureID, (Bitmap)Content.Load(bitmapName));
+			CreateTexture2D(out textureID, Content.Load<Bitmap>(bitmapName));
         }
 
         static public void CreateTexture2D(out int textureID, Bitmap texture)
@@ -116,7 +116,7 @@ namespace Umbra.Implementations
 
             for (int i = 0; i < bitmaps.Length; i++)
             {
-                bitmaps[i] = (Bitmap)Content.Load(bitmapNames[i]);
+				bitmaps[i] = Content.Load<Bitmap>(bitmapNames[i]);
             }
 
             CreateTexture2DArray(out textureID, bitmaps);

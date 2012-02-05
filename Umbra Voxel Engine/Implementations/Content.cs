@@ -24,7 +24,7 @@ namespace Umbra.Implementations
 {
 	static public class Content
 	{
-		static public object Load(string assetName)
+		static public Value Load<Value>(string assetName)
 		{
 			string extension = assetName.Substring(assetName.LastIndexOf('.'));
 
@@ -32,7 +32,12 @@ namespace Umbra.Implementations
 			{
 				case ".png":
 				{
-					return (object)LoadBitmap(assetName);
+					return (Value)((object)LoadBitmap(assetName));
+				}
+	
+				case ".c":
+				{
+					return (Value)((object)LoadShaderFile(assetName));
 				}
 
 				default:
@@ -47,6 +52,13 @@ namespace Umbra.Implementations
 			FileExists(assetName);
 
 			return new Bitmap(assetName);
+		}
+
+		static private string LoadShaderFile(string assetName)
+		{
+			FileExists(assetName);
+
+			return File.ReadAllText(assetName);
 		}
 
 		static private void FileExists(string assetName)

@@ -292,6 +292,12 @@ namespace Umbra.Definitions.Globals
 				static public string ChunkFilePath = @"chunks/";
 				static public string ChunkFileExtension = @".cnk";
 			}
+
+			static public class Shaders
+			{
+				static private string Path = MainPath + @"shaders/";
+				static public string Raytracer = Path + @"/raytracer.c";
+			}
 		}
 	}
 }

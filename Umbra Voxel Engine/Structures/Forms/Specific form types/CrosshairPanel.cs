@@ -49,7 +49,7 @@ namespace Umbra.Structures.Forms
 
         public CrosshairPanel()
         {
-            Bitmap Texture = (Bitmap)Content.Load(Constants.Content.Textures.CrosshairFilename);
+            Bitmap Texture = Content.Load<Bitmap>(Constants.Content.Textures.CrosshairFilename);
 
             RenderHelp.CreateTexture2D(out TextureID, Texture);
             

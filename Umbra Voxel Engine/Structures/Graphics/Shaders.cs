@@ -1,4 +1,6 @@
 ﻿using System;
+using Umbra.Definitions.Globals;
+using Umbra.Implementations;
 using OpenTK.Graphics.OpenGL;
 
 namespace Umbra.Structures.Graphics
@@ -9,7 +11,7 @@ namespace Umbra.Structures.Graphics
 
         static public void CompileShaders()
         {
-			DefaultShaderProgram = new Shader(FragmentShader.Shader);
+			DefaultShaderProgram = new Shader(Content.Load<string>(Constants.Content.Shaders.Raytracer));
 
             GetVariables(DefaultShaderProgram.ProgramID);
         }

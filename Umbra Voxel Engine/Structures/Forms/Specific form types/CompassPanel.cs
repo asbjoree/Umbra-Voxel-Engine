@@ -47,7 +47,7 @@ namespace Umbra.Structures.Forms
 
         public CompassPanel()
         {
-            Texture = (Bitmap)Content.Load(Constants.Content.Textures.CompassFilename);
+            Texture = Content.Load<Bitmap>(Constants.Content.Textures.CompassFilename);
 
             RenderHelp.CreateTexture2D(out TextureID, Texture);
         }
