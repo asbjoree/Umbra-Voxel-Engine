@@ -78,44 +78,44 @@ namespace Umbra.Implementations
                 index = new BlockIndex(direction * distance + startPosition);
 
                 intersect = index.GetBoundingBox().Intersects(ray);
-                if (intersect.HasValue && Constants.World.Current.GetBlock(index).Solidity)
+                if (intersect.HasValue && ChunkManager.GetBlock(index).Solidity)
                 {
                     intersectionPoint = intersect.Value * direction + startPosition;
                     return index;
                 }
 
                 intersect = (index + BlockIndex.UnitX).GetBoundingBox().Intersects(ray);
-                if (intersect.HasValue && Constants.World.Current.GetBlock(index + BlockIndex.UnitX).Solidity)
+                if (intersect.HasValue && ChunkManager.GetBlock(index + BlockIndex.UnitX).Solidity)
                 {
                     intersectionPoint = intersect.Value * direction + startPosition;
                     return index + BlockIndex.UnitX;
                 }
                 intersect = (index - BlockIndex.UnitX).GetBoundingBox().Intersects(ray);
-                if (intersect.HasValue && Constants.World.Current.GetBlock(index - BlockIndex.UnitX).Solidity)
+                if (intersect.HasValue && ChunkManager.GetBlock(index - BlockIndex.UnitX).Solidity)
                 {
                     intersectionPoint = intersect.Value * direction + startPosition;
                     return index - BlockIndex.UnitX;
                 }
                 intersect = (index + BlockIndex.UnitY).GetBoundingBox().Intersects(ray);
-                if (intersect.HasValue && Constants.World.Current.GetBlock(index + BlockIndex.UnitY).Solidity)
+                if (intersect.HasValue && ChunkManager.GetBlock(index + BlockIndex.UnitY).Solidity)
                 {
                     intersectionPoint = intersect.Value * direction + startPosition;
                     return index + BlockIndex.UnitY;
                 }
                 intersect = (index - BlockIndex.UnitY).GetBoundingBox().Intersects(ray);
-                if (intersect.HasValue && Constants.World.Current.GetBlock(index - BlockIndex.UnitY).Solidity)
+                if (intersect.HasValue && ChunkManager.GetBlock(index - BlockIndex.UnitY).Solidity)
                 {
                     intersectionPoint = intersect.Value * direction + startPosition;
                     return index - BlockIndex.UnitY;
                 }
                 intersect = (index + BlockIndex.UnitZ).GetBoundingBox().Intersects(ray);
-                if (intersect.HasValue && Constants.World.Current.GetBlock(index + BlockIndex.UnitZ).Solidity)
+                if (intersect.HasValue && ChunkManager.GetBlock(index + BlockIndex.UnitZ).Solidity)
                 {
                     intersectionPoint = intersect.Value * direction + startPosition;
                     return index + BlockIndex.UnitZ;
                 }
                 intersect = (index - BlockIndex.UnitZ).GetBoundingBox().Intersects(ray);
-                if (intersect.HasValue && Constants.World.Current.GetBlock(index - BlockIndex.UnitZ).Solidity)
+                if (intersect.HasValue && ChunkManager.GetBlock(index - BlockIndex.UnitZ).Solidity)
                 {
                     intersectionPoint = intersect.Value * direction + startPosition;
                     return index - BlockIndex.UnitZ;

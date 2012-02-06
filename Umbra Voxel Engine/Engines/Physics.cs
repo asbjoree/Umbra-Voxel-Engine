@@ -127,7 +127,7 @@ namespace Umbra.Engines
 		{
 			foreach (BlockIndex index in obj.BoundingBox.At(position).IntersectionIndices)
 			{
-				if (Constants.World.Current.GetBlock(index).Solidity)
+				if (ChunkManager.GetBlock(index).Solidity)
 				{
 					return false;
 				}

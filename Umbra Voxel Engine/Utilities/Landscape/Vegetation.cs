@@ -30,7 +30,6 @@ namespace Umbra.Utilities.Landscape
             Seed = seed;
         }
 
-
         static public void Vegetate(Chunk chunk)
         {
             for (int x = 0; x < Constants.World.ChunkSize; x++)
@@ -73,7 +72,7 @@ namespace Umbra.Utilities.Landscape
                         blockWorldPos = new BlockIndex(point.X + x, point.Y + y, point.Z + z) + chunk.Index;
                         if (x == 0 && z == 0 && y <= trunkHeight)
                         {
-                            if (Constants.World.Current.GetBlock(blockWorldPos) != Block.Air)
+                            if (ChunkManager.GetBlock(blockWorldPos) != Block.Air)
                             {
                                 return;
                             }
@@ -83,7 +82,7 @@ namespace Umbra.Utilities.Landscape
                         {
                             if (Math.Sqrt(Math.Pow(x, 2) + Math.Pow(z, 2) + Math.Pow(y - leafCenter, 2)) < leafRadius)
                             {
-                                if (Constants.World.Current.GetBlock(blockWorldPos) != Block.Air)
+                                if (ChunkManager.GetBlock(blockWorldPos) != Block.Air)
                                 {
                                     return;
                                 }
@@ -102,7 +101,7 @@ namespace Umbra.Utilities.Landscape
                 }
                 else
                 {
-                    Constants.World.Current.SetBlock(index, Block.Leaves, false);
+                    //ChunkManager.SetBlock(index, Block.Leaves, false);
                 }
             }
 
@@ -114,7 +113,7 @@ namespace Umbra.Utilities.Landscape
                 }
                 else
                 {
-                    Constants.World.Current.SetBlock(index, Block.Log, false);
+                    //Constants.World.Current.SetBlock(index, Block.Log, false);
                 }
             }
 

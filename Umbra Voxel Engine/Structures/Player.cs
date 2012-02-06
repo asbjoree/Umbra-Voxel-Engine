@@ -56,18 +56,18 @@ namespace Umbra.Structures
 
 		public void Initialize()
 		{
-			Position.Y = Math.Ceiling(Math.Max(TerrainGenerator.GetLandscapeHeight((int)Position.X, (int)Position.Z), (double)Constants.Landscape.WaterLevel));
+			Position.Y = TerrainGenerator.GetLandscapeHeight((int)Position.X, (int)Position.Z) + 1.0;
 			IsReleased = false;
 		}
 
 		public void Release()
 		{
 
-			while (Constants.World.Current.GetBlock(new BlockIndex(Position + Vector3d.UnitY)) != Block.Air || Constants.World.Current.GetBlock(new BlockIndex(Position + Vector3d.UnitY * 2)) != Block.Air)
-			{
-				Position.Y++;
-			}
-			Position.Y += 1.0;
+			//while (ChunkManager.GetBlock(new BlockIndex(Position + Vector3d.UnitY)) != Block.Air || ChunkManager.GetBlock(new BlockIndex(Position + Vector3d.UnitY * 2)) != Block.Air)
+			//{
+			//    Position.Y++;
+			//}
+			//Position.Y += 1.0;
 
 			IsReleased = true;
 			Variables.Player.NoclipEnabled = false;
@@ -81,13 +81,11 @@ namespace Umbra.Structures
 
 			if (!Variables.Player.NoclipEnabled && Constants.World.DynamicWorld)
 			{
-				Vector3d currentWorldCenter = Constants.World.Current.Offset.Position + Vector3d.One * ((double)Constants.World.WorldSize / 2.0) * (double)Constants.World.ChunkSize;
-
-				if (new ChunkIndex(Position) != new ChunkIndex(currentWorldCenter))
+				if (new ChunkIndex(Position) != new ChunkIndex(ChunkManager.WorldCenter))
 				{
-					if ((Position - currentWorldCenter).Length > Constants.World.UpdateLengthFromCenter)
+					if ((Position - ChunkManager.WorldCenter).Length > Constants.World.UpdateLengthFromCenter)
 					{
-						Constants.World.Current.OffsetChunks(new ChunkIndex(Position - currentWorldCenter));
+						ChunkManager.SetCenter(new ChunkIndex(Position));
 					}
 				}
 			}
@@ -113,7 +111,7 @@ namespace Umbra.Structures
 					BlockIndex target = BlockCursor.GetToDestroy();
 					if (target != null)
 					{
-						Constants.World.Current.SetBlock(target, Block.Air);
+						ChunkManager.SetBlock(target, Block.Air);
 						CurrentAlterDelay = Constants.Controls.AlterDelay;
 					}
 				}
@@ -125,7 +123,7 @@ namespace Umbra.Structures
 					BlockIndex target = BlockCursor.GetToCreate();
 					if (target != null && !BoundingBox.Intersects(target.GetBoundingBox()))
 					{
-						Constants.World.Current.SetBlock(target, Variables.Player.BlockEditing.CurrentCursorBlock);
+						ChunkManager.SetBlock(target, Variables.Player.BlockEditing.CurrentCursorBlock);
 						CurrentAlterDelay = Constants.Controls.AlterDelay;
 					}
 				}
@@ -231,7 +229,7 @@ namespace Umbra.Structures
 
 		public float GetViewType()
 		{
-			Block block = Constants.World.Current.GetBlock(new BlockIndex(Constants.Engines.Physics.Player.FirstPersonCamera.Position));
+			Block block = ChunkManager.GetBlock(new BlockIndex(Constants.Engines.Physics.Player.FirstPersonCamera.Position));
 
 			if (block == Block.Water)
 			{

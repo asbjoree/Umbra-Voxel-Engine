@@ -30,34 +30,31 @@ namespace Umbra.Structures
 				return (byte)InternalType;
 			}
 		}
-		public byte Data { get; set; }
 
-		public Block(byte type, byte data)
+		public Block(byte type)
 			: this()
 		{
 			InternalType = (BlockType)type;
-			Data = data;
 		}
 
-		private Block(BlockType type, byte data)
+		private Block(BlockType type)
 			: this()
 		{
 			InternalType = type;
-			Data = data;
 		}
 
-		static public Block Air { get { return new Block(BlockType.Air, 0); } }
-		static public Block Grass { get { return new Block(BlockType.Grass, 0); } }
-		static public Block Stone { get { return new Block(BlockType.Stone, 0); } }
-		static public Block Dirt { get { return new Block(BlockType.Dirt, 0); } }
-		static public Block Water { get { return new Block(BlockType.Water, 0); } }
-		static public Block Sand { get { return new Block(BlockType.Sand, 0); } }
-		static public Block Leaves { get { return new Block(BlockType.Leaves, 0); } }
-		static public Block Lava { get { return new Block(BlockType.Lava, 0); } }
-		static public Block Log { get { return new Block(BlockType.Log, 0); } }
-		static public Block Vacuum { get { return new Block(BlockType.Vacuum, 0); } }
+		static public Block Air { get { return new Block(BlockType.Air); } }
+		static public Block Grass { get { return new Block(BlockType.Grass); } }
+		static public Block Stone { get { return new Block(BlockType.Stone); } }
+		static public Block Dirt { get { return new Block(BlockType.Dirt); } }
+		static public Block Water { get { return new Block(BlockType.Water); } }
+		static public Block Sand { get { return new Block(BlockType.Sand); } }
+		static public Block Leaves { get { return new Block(BlockType.Leaves); } }
+		static public Block Lava { get { return new Block(BlockType.Lava); } }
+		static public Block Log { get { return new Block(BlockType.Log); } }
+		static public Block Vacuum { get { return new Block(BlockType.Vacuum); } }
 
-		public byte[] Bytes { get { return new byte[] { (byte)InternalType, Data }; } }
+		public byte ByteValue { get { return (byte)InternalType; } }
 
 		public byte GetFace(Direction direction)
 		{

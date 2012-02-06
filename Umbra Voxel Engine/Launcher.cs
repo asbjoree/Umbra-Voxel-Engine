@@ -130,7 +130,7 @@ namespace Umbra
 			{
 				case 0: // Standard
 					{
-						this.checkBox_dynUpdate.Checked = true;
+						this.checkBox_dynUpdate.Checked = false;
 						this.checkBox_saveWorld.Checked = false;
 						this.textBox_seed.Text = "";
 						this.numericUpDown_worldSize.Value = 5;

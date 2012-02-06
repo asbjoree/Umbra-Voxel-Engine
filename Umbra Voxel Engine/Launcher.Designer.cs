@@ -109,8 +109,7 @@ namespace Umbra
 			// checkBox_dynUpdate
 			// 
 			this.checkBox_dynUpdate.AutoSize = true;
-			this.checkBox_dynUpdate.Checked = true;
-			this.checkBox_dynUpdate.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox_dynUpdate.Checked = false;
 			this.checkBox_dynUpdate.Location = new System.Drawing.Point(8, 49);
 			this.checkBox_dynUpdate.Name = "checkBox_dynUpdate";
 			this.checkBox_dynUpdate.Size = new System.Drawing.Size(211, 17);

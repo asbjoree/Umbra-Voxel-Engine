@@ -21,11 +21,11 @@ using Console = Umbra.Implementations.Graphics.Console;
 
 namespace Umbra.Structures.Forms
 {
-    class CrosshairPanel : Panel
-    {
-        private int TextureID;
-        private int Width;
-        private int Height;
+	class CrosshairPanel : Panel
+	{
+		private int TextureID;
+		private int Width;
+		private int Height;
 
 		static public Form GetCrosshair
 		{
@@ -47,19 +47,19 @@ namespace Umbra.Structures.Forms
 			}
 		}
 
-        public CrosshairPanel()
-        {
-            Bitmap Texture = Content.Load<Bitmap>(Constants.Content.Textures.CrosshairFilename);
+		public CrosshairPanel()
+		{
+			Bitmap Texture = Content.Load<Bitmap>(Constants.Content.Textures.CrosshairFilename);
 
-            RenderHelp.CreateTexture2D(out TextureID, Texture);
-            
-            Width = Texture.Width;
-            Height = Texture.Height;
-        }
+			RenderHelp.CreateTexture2D(out TextureID, Texture);
+			
+			Width = Texture.Width;
+			Height = Texture.Height;
+		}
 
-        public override void Render(Rectangle clientFrame)
-        {
-            RenderHelp.RenderTexture(TextureID, new Rectangle(clientFrame.X - Width / 2, clientFrame.Y - Height / 2, Width, Height));
-        }
-    }
+		public override void Render(Rectangle clientFrame)
+		{
+			RenderHelp.RenderTexture(TextureID, new Rectangle(clientFrame.X - Width / 2, clientFrame.Y - Height / 2, Width, Height));
+		}
+	}
 }

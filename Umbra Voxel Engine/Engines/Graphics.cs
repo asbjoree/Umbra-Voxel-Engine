@@ -23,38 +23,11 @@ namespace Umbra.Engines
 			base.Initialize(e);
 		}
 
-		private void UseShader(int shader)
-		{
-			GL.UseProgram(shader);
-
-			if (shader == 0)
-			{
-				return;
-			}
-
-			GL.MatrixMode(MatrixMode.Modelview);
-			GL.LoadIdentity();
-			GL.MatrixMode(MatrixMode.Projection);
-			GL.LoadIdentity();
-
-			RenderHelp.BindTexture(TextureID, TextureUnit.Texture0);
-
-			byte[,,] test = new byte[,,] {{{ 1 }}};
-
-			GL.TexSubImage3D(TextureTarget.Texture2DArray, 0, 0, 0, 0, 1, 1, 1, PixelFormat.Luminance, PixelType.UnsignedByte, test);
-
-			GL.Uniform3(Shaders.PositionID, (Vector3)Constants.Engines.Physics.Player.Position);
-
-			GL.Uniform3(Shaders.LookAtID, (Vector3)Constants.Engines.Physics.Player.FirstPersonCamera.GetLookAt());
-
-			GL.Uniform2(Shaders.ResolutionID, Constants.Graphics.ScreenResolution);
-			GL.Uniform1(Shaders.TimeID, time += 0.1F);
-		}
-
 		public override void Render(FrameEventArgs e)
 		{
-
+			GL.Enable(EnableCap.Texture3DExt);
 			RenderQuad();
+			GL.Disable(EnableCap.Texture3DExt);
 
 			GL.Enable(EnableCap.DepthTest);
 			GL.Enable(EnableCap.CullFace);
@@ -77,7 +50,26 @@ namespace Umbra.Engines
 
 		void RenderQuad()
 		{
-			UseShader(Shaders.DefaultShaderProgram.ProgramID);
+			GL.UseProgram(Shaders.DefaultShaderProgram.ProgramID);
+
+			GL.MatrixMode(MatrixMode.Modelview);
+			GL.LoadIdentity();
+			GL.MatrixMode(MatrixMode.Projection);
+			GL.LoadIdentity();
+
+			RenderHelp.BindTexture(TextureID, TextureUnit.Texture0);
+
+			GL.Uniform3(Shaders.PositionID, (Vector3)Constants.Engines.Physics.Player.Position);
+
+			GL.Uniform3(Shaders.LookAtID, (Vector3)Constants.Engines.Physics.Player.FirstPersonCamera.GetLookAt());
+
+			GL.Uniform2(Shaders.ResolutionID, Constants.Graphics.ScreenResolution);
+			GL.Uniform1(Shaders.TimeID, time += 0.1F);
+
+
+			GL.Uniform3(Shaders.OffsetID, (Vector3)ChunkManager.CenterIndex.Position / 32);
+
+			GL.BindTexture(TextureTarget.Texture3D, ChunkManager.DataID);
 
 			GL.Begin(BeginMode.Quads);
 			{
@@ -88,7 +80,7 @@ namespace Umbra.Engines
 			}
 			GL.End();
 
-			UseShader(0);
+			GL.UseProgram(0);
 		}
 
 		void RenderCursor(BlockIndex currentAim)

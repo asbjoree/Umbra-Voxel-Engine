@@ -2,8 +2,10 @@
 uniform vec2 resolution;
 uniform vec3 cam_pos;
 uniform vec3 cam_lookat;
+uniform vec3 offset;
 
 uniform sampler2DArray textures;
+uniform sampler3D data;
 
 struct Ray
 {
@@ -11,10 +13,54 @@ struct Ray
 	vec3 Direction;
 };
 
+int eMod(int dividend, int divisor)
+{
+	int mod = dividend % divisor;
+	return mod + (mod < 0 ? divisor : 0);
+}
+
+ivec3 GetArrayIndex(vec3 index)
+{
+	ivec3 chunk;
+	chunk.x = int(floor(index.x / 32.0));
+	chunk.y = int(floor(index.y / 32.0));
+	chunk.z = int(floor(index.z / 32.0));
+
+	if(index.x < 0)
+	{
+		chunk.x -= 1;
+	}
+	if(index.y < 0)
+	{
+		chunk.y -= 1;
+	}
+	if(index.z < 0)
+	{
+		chunk.z -= 1;
+	}
+
 	
+	chunk.x = eMod(chunk.x, 5);
+	chunk.y = eMod(chunk.y, 5);
+	chunk.z = eMod(chunk.z, 5);
+
+	ivec3 block = ivec3(index);
+	
+	block.x = eMod(block.x, 32);
+	block.y = eMod(block.y, 32);
+	block.z = eMod(block.z, 32);
+
+	return (chunk * 32 + block); // zyx -- axes are mirrored?
+}
+
+int GetVoxel(vec3 voxel)
+{
+	return int(floor(texelFetch(data, GetArrayIndex(voxel), 0).g * 255));
+}
+
 bool ShouldDraw(vec3 voxel)
 {
-	return voxel.y < sin(length(voxel.xz)) * length(voxel.xz) / 10.0;
+	return GetVoxel(voxel) != 0;
 }
 
 void IterateVoxel(inout vec3 voxel, Ray ray, inout vec4 colorAccum)
@@ -41,31 +87,34 @@ void IterateVoxel(inout vec3 voxel, Ray ray, inout vec4 colorAccum)
 	if(maxX <= min(maxY, maxZ))
 	{
 		voxel.x += sign(ray.Direction.x);
-		if(ShouldDraw(voxel))
+		int block = GetVoxel(voxel);
+		if(block != 0)
 		{
 			hitPoint = fract(ray.Origin + ray.Direction * maxX).zy;
-			colorAccum += vec4(texture2DArray(textures, vec3(1.0 - abs(hitPoint), 1.0)).xyz  * 0.9, 1.0);
+			colorAccum = vec4(texture2DArray(textures, vec3(1.0 - abs(hitPoint), block)).xyz  * 0.9, 1.0);
 		}
 	}
 	if(maxY <= min(maxX, maxZ))
 	{
 		voxel.y += sign(ray.Direction.y);
-		if(ShouldDraw(voxel))
+		int block = GetVoxel(voxel);
+		if(block != 0)
 		{
 			hitPoint = fract(ray.Origin + ray.Direction * maxY).xz;
-			colorAccum += vec4(texture2DArray(textures, vec3(1.0 - abs(hitPoint), 0.0)).xyz  * 1.0, 1.0);
+			colorAccum = vec4(texture2DArray(textures, vec3(1.0 - abs(hitPoint), block)).xyz  * 1.0, 1.0);
 		}
 	}
 	if(maxZ <= min(maxX, maxY))
 	{
 		voxel.z += sign(ray.Direction.z);
-		if(ShouldDraw(voxel))
+		int block = GetVoxel(voxel);
+		if(block != 0)
 		{
 			hitPoint = fract(ray.Origin + ray.Direction * maxZ).xy;
-			colorAccum += vec4(texture2DArray(textures, vec3(1.0 - abs(hitPoint), 1.0)).xyz  * 0.8, 1.0);
+			colorAccum = vec4(texture2DArray(textures, vec3(1.0 - abs(hitPoint), block)).xyz  * 0.8, 1.0);
 		}
 	}
-	colorAccum += vec4(0.39, 0.58, 0.93, 1.0) * 0.01;
+	colorAccum += vec4(0.39, 0.58, 0.93, 1.0) * 0.005;
 }
 	
 vec4 GetRayColor(Ray ray)

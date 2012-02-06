@@ -43,7 +43,7 @@ namespace Umbra.Structures
 
 				//foreach (BlockIndex index in BoundingBox.IntersectionIndices)
 				//{
-				//    buoyancy += Constants.World.Current.GetBlock(index).Density * BoundingBox.IntersectionVolume(index.GetBoundingBox());
+				//    buoyancy += ChunkManager.GetBlock(index).Density * BoundingBox.IntersectionVolume(index.GetBoundingBox());
 				//}
 
 				//return (2.0 * Constants.Physics.Gravity * buoyancy) / (Mass + buoyancy) / Mass;
@@ -59,7 +59,7 @@ namespace Umbra.Structures
 
                 foreach (BlockIndex index in BoundingBox.IntersectionIndices)
                 {
-                    average += Constants.World.Current.GetBlock(index).Viscosity * (index.GetBoundingBox().IntersectionVolume(BoundingBox) / Volume);
+					average += ChunkManager.GetBlock(index).Viscosity * (index.GetBoundingBox().IntersectionVolume(BoundingBox) / Volume);
                 }
 
                 return average;
@@ -74,9 +74,9 @@ namespace Umbra.Structures
 
                 foreach (BlockIndex index in Constants.Engines.Physics.BlocksBeneath(this))
                 {
-                    if (maxFriction < Constants.World.Current.GetBlock(index).KineticFrictionCoefficient)
+					if (maxFriction < ChunkManager.GetBlock(index).KineticFrictionCoefficient)
                     {
-                        maxFriction = Constants.World.Current.GetBlock(index).KineticFrictionCoefficient;
+						maxFriction = ChunkManager.GetBlock(index).KineticFrictionCoefficient;
                     }
                 }
 
@@ -92,9 +92,9 @@ namespace Umbra.Structures
 
                 foreach (BlockIndex index in Constants.Engines.Physics.BlocksBeneath(this))
                 {
-                    if (maxGrip < Constants.World.Current.GetBlock(index).GripCoefficient)
+                    if (maxGrip < ChunkManager.GetBlock(index).GripCoefficient)
                     {
-                        maxGrip = Constants.World.Current.GetBlock(index).GripCoefficient;
+                        maxGrip = ChunkManager.GetBlock(index).GripCoefficient;
                     }
                 }
 

@@ -105,7 +105,6 @@
     <Compile Include="Structures\PhysicsObject.cs" />
     <Compile Include="Structures\Geometry\Ray.cs" />
     <Compile Include="Structures\Player.cs" />
-    <Compile Include="Structures\World.cs" />
     <Compile Include="Utilities\Landscape\Vegetation.cs" />
     <Compile Include="Utilities\Mathematics.cs" />
     <Compile Include="Utilities\Threading\Threading.cs" />

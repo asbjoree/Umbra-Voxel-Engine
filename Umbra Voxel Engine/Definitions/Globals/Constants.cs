@@ -56,10 +56,8 @@ namespace Umbra.Definitions.Globals
 			TerrainGenerator.Initialize(Landscape.WorldSeed);
 			Engines.Physics.Player.Initialize();
 
-			World.Current = new Structures.World(World.Name);
 			ConsoleFunctions.Initialize();
-			ChunkManager.InitializeThreads();
-			World.Current.Initialize();
+			ChunkManager.Initialize();
 			ClockTime.SetTimeOfDay(TimeOfDay.Day);
 
 			Console.Initialize();
@@ -185,7 +183,6 @@ namespace Umbra.Definitions.Globals
 
 		static public class World
 		{
-			static public Structures.World Current;
 			static public string Name = "default";
 			static public int ChunkSize = 32;
 			static public int WorldSize = 5;
@@ -215,7 +212,7 @@ namespace Umbra.Definitions.Globals
 			static public int WaterLevel = 0;
 
 			static public int SandLevel = WaterLevel + 3;
-			static public bool CavesEnabled = true;
+			static public bool CavesEnabled = false;
 
 			static public class Vegetation
 			{

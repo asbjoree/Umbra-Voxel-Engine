@@ -86,7 +86,7 @@ namespace Umbra.Utilities.Threading
 					// Unload Chunk
 					if (Constants.World.SaveDynamicWorld)
 					{
-						ChunkManager.StoreChunkImmediate(currentChunk);
+						ChunkManager.SaveChunk(currentChunk);
 					}
 					else
 					{
@@ -155,6 +155,7 @@ namespace Umbra.Utilities.Threading
 					// Vegetate Chunk
 
 					Vegetation.Vegetate(currentChunk);
+
 
 					Console.Write("VegetationQueue: " + VegetationQueue.Count);
 
