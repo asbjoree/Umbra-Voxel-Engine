@@ -122,61 +122,51 @@ namespace Umbra.Utilities.Landscape
 					{
 						absoluteHeight = chunk.Index.Y * 32 + y;
 						terrainHeight = heightMap[x, z];
-						relativeHeight = terrainHeight - absoluteHeight;
+						relativeHeight = absoluteHeight - terrainHeight;
 
-						if (absoluteHeight <= terrainHeight)
+						if (absoluteHeight >= terrainHeight)
 						{
-							chunk[x, y, z] = Block.Stone;
+							if (absoluteHeight <= Constants.Landscape.WaterLevel)
+							{
+								chunk[x, y, z] = Block.Water;
+							}
+							else
+							{
+								chunk[x, y, z] = Block.Air;
+							}
 						}
 						else
 						{
-							chunk[x, y, z] = Block.Air;
+							if (Constants.Landscape.CavesEnabled)
+							{
+								density = NoiseMaps.GetTrilinearlyInterpolated((int)chunk.Index.Position.X + x, (int)chunk.Index.Position.Y + y, (int)chunk.Index.Position.Z + z, 16, Seed);
+
+								if (density < GetTresholdFromHeight(relativeHeight))
+								{
+									chunk[x, y, z] = Block.Air;
+									continue;
+								}
+							}
+							if (absoluteHeight < Constants.Landscape.SandLevel && relativeHeight >= -4)
+							{
+								chunk[x, y, z] = Block.Sand;
+							}
+							else if (relativeHeight >= -5)
+							{
+								if (relativeHeight == -1)
+								{
+									chunk[x, y, z] = Block.Grass;
+								}
+								else
+								{
+									chunk[x, y, z] = Block.Dirt;
+								}
+							}
+							else
+							{
+								chunk[x, y, z] = Block.Stone;
+							}
 						}
-
-						//if (absoluteHeight <= terrainHeight)
-						//{
-						//    if (absoluteHeight <= Constants.Landscape.WaterLevel)
-						//    {
-						//        chunk[x, y, z] = Block.Water;
-						//    }
-						//    else
-						//    {
-						//        chunk[x, y, z] = Block.Air;
-						//    }
-						//}
-						//else
-						//{
-						//    if (Constants.Landscape.CavesEnabled)
-						//    {
-						//        density = NoiseMaps.GetTrilinearlyInterpolated((int)chunk.Index.Position.X + x, (int)chunk.Index.Position.Y + y, (int)chunk.Index.Position.Z + z, 16, Seed);
-
-						//        if (density < GetTresholdFromHeight(relativeHeight))
-						//        {
-						//            chunk[x, y, z] = Block.Air;
-						//            continue;
-						//        }
-						//    }
-
-						//    if (absoluteHeight <= Constants.Landscape.SandLevel && relativeHeight <= 4)
-						//    {
-						//        chunk[x, y, z] = Block.Sand;
-						//    }
-						//    else if (relativeHeight <= 5)
-						//    {
-						//        if (relativeHeight == 1)
-						//        {
-						//            chunk[x, y, z] = Block.Grass;
-						//        }
-						//        else
-						//        {
-						//            chunk[x, y, z] = Block.Dirt;
-						//        }
-						//    }
-						//    else
-						//    {
-						//        chunk[x, y, z] = Block.Stone;
-						//    }
-						//}
 					}
 				}
 			}

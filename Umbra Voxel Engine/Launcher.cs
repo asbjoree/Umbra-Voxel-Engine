@@ -159,34 +159,7 @@ namespace Umbra
 					{
 						this.checkBox_dynUpdate.Checked = false;
 						this.checkBox_saveWorld.Checked = false;
-						this.textBox_seed.Text = "Land";
-						this.numericUpDown_worldSize.Value = 3;
-						this.textBox_name.Text = "default";
-
-						this.checkBox_fullscreen.Checked = false;
-						this.numericUpDown_resX.Value = 1000;
-						this.numericUpDown_resY.Value = 600;
-						this.checkBox_antiAliasing.Checked = false;
-
-						this.radioButton_both.Checked = true;
-
-						this.checkBox_blockEdit.Checked = true;
-						this.checkBox_noclip.Checked = true;
-
-						this.checkBox_water.Checked = true;
-						this.numericUpDown_waterlevel.Value = 0;
-						this.checkBox_treeenabled.Checked = false;
-						this.numericUpDown_treedensity.Value = 50;
-						this.numericUpDown_landAmp.Value = 16;
-						this.numericUpDown_landRough.Value = 70;
-
-						break;
-					}
-				case 2: // Water
-					{
-						this.checkBox_dynUpdate.Checked = false;
-						this.checkBox_saveWorld.Checked = false;
-						this.textBox_seed.Text = "Water";
+						this.textBox_seed.Text = "land";
 						this.numericUpDown_worldSize.Value = 5;
 						this.textBox_name.Text = "default";
 
@@ -205,7 +178,34 @@ namespace Umbra
 						this.checkBox_treeenabled.Checked = true;
 						this.numericUpDown_treedensity.Value = 50;
 						this.numericUpDown_landAmp.Value = 256;
-						this.numericUpDown_landRough.Value = 90;
+						this.numericUpDown_landRough.Value = 70;
+
+						break;
+					}
+				case 2: // Water
+					{
+						this.checkBox_dynUpdate.Checked = false;
+						this.checkBox_saveWorld.Checked = false;
+						this.textBox_seed.Text = "water";
+						this.numericUpDown_worldSize.Value = 5;
+						this.textBox_name.Text = "default";
+
+						this.checkBox_fullscreen.Checked = false;
+						this.numericUpDown_resX.Value = 1000;
+						this.numericUpDown_resY.Value = 600;
+						this.checkBox_antiAliasing.Checked = false;
+
+						this.radioButton_both.Checked = true;
+
+						this.checkBox_blockEdit.Checked = true;
+						this.checkBox_noclip.Checked = true;
+
+						this.checkBox_water.Checked = true;
+						this.numericUpDown_waterlevel.Value = 0;
+						this.checkBox_treeenabled.Checked = true;
+						this.numericUpDown_treedensity.Value = 50;
+						this.numericUpDown_landAmp.Value = 256;
+						this.numericUpDown_landRough.Value = 70;
 
 						break;
 					}

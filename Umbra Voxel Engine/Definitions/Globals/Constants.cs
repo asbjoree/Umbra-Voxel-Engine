@@ -54,10 +54,10 @@ namespace Umbra.Definitions.Globals
 
 
 			TerrainGenerator.Initialize(Landscape.WorldSeed);
-			Engines.Physics.Player.Initialize();
 
 			ConsoleFunctions.Initialize();
 			ChunkManager.Initialize();
+			Engines.Physics.Player.Initialize();
 			ClockTime.SetTimeOfDay(TimeOfDay.Day);
 
 			Console.Initialize();

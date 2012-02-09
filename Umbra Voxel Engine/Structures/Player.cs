@@ -56,22 +56,13 @@ namespace Umbra.Structures
 
 		public void Initialize()
 		{
-			Position.Y = TerrainGenerator.GetLandscapeHeight((int)Position.X, (int)Position.Z) + 1.0;
-			IsReleased = false;
-		}
-
-		public void Release()
-		{
-
-			//while (ChunkManager.GetBlock(new BlockIndex(Position + Vector3d.UnitY)) != Block.Air || ChunkManager.GetBlock(new BlockIndex(Position + Vector3d.UnitY * 2)) != Block.Air)
-			//{
-			//    Position.Y++;
-			//}
-			//Position.Y += 1.0;
+			Position = new Vector3d(Constants.Player.Spawn.X, Math.Max(TerrainGenerator.GetLandscapeHeight((int)Constants.Player.Spawn.X, (int)Constants.Player.Spawn.Z), Constants.Landscape.WaterLevel), Constants.Player.Spawn.Z);
 
 			IsReleased = true;
 			Variables.Player.NoclipEnabled = false;
 			PhysicsEnabled = true;
+
+			ChunkManager.SetCenter(new ChunkIndex(Position));
 		}
 
 		public override void Update()
@@ -81,13 +72,13 @@ namespace Umbra.Structures
 
 			if (!Variables.Player.NoclipEnabled && Constants.World.DynamicWorld)
 			{
-				if (new ChunkIndex(Position) != new ChunkIndex(ChunkManager.WorldCenter))
-				{
-					if ((Position - ChunkManager.WorldCenter).Length > Constants.World.UpdateLengthFromCenter)
-					{
-						ChunkManager.SetCenter(new ChunkIndex(Position));
-					}
-				}
+				//if (new ChunkIndex(Position) != new ChunkIndex(ChunkManager.WorldCenter))
+				//{
+				//    if ((Position - ChunkManager.WorldCenter).Length > Constants.World.UpdateLengthFromCenter)
+				//    {
+				//        ChunkManager.SetCenter(new ChunkIndex(Position));
+				//    }
+				//}
 			}
 
 			UpdateMovement();

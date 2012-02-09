@@ -49,6 +49,7 @@ namespace Umbra
 			this.label5 = new System.Windows.Forms.Label();
 			this.textBox_name = new System.Windows.Forms.TextBox();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.checkBox_ambientOcclusion = new System.Windows.Forms.CheckBox();
 			this.checkBox_anisotropicFiltering = new System.Windows.Forms.CheckBox();
 			this.comboBox_texturePack = new System.Windows.Forms.ComboBox();
 			this.radioButton_both = new System.Windows.Forms.RadioButton();
@@ -80,7 +81,6 @@ namespace Umbra
 			this.tabPage5 = new System.Windows.Forms.TabPage();
 			this.label9 = new System.Windows.Forms.Label();
 			this.button1 = new System.Windows.Forms.Button();
-			this.checkBox_ambientOcclusion = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown_worldSize)).BeginInit();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -109,7 +109,6 @@ namespace Umbra
 			// checkBox_dynUpdate
 			// 
 			this.checkBox_dynUpdate.AutoSize = true;
-			this.checkBox_dynUpdate.Checked = false;
 			this.checkBox_dynUpdate.Location = new System.Drawing.Point(8, 49);
 			this.checkBox_dynUpdate.Name = "checkBox_dynUpdate";
 			this.checkBox_dynUpdate.Size = new System.Drawing.Size(211, 17);
@@ -222,9 +221,9 @@ namespace Umbra
 			this.comboBox_preset.FormattingEnabled = true;
 			this.comboBox_preset.Items.AddRange(new object[] {
             "Standard",
-            "Debug - physics",
-            "Debug - water",
-            "Debug - stress test"});
+            "Land",
+            "Water",
+            "Stress test"});
 			this.comboBox_preset.Location = new System.Drawing.Point(8, 19);
 			this.comboBox_preset.Name = "comboBox_preset";
 			this.comboBox_preset.Size = new System.Drawing.Size(121, 21);
@@ -302,6 +301,16 @@ namespace Umbra
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "Graphics";
 			this.tabPage2.UseVisualStyleBackColor = true;
+			// 
+			// checkBox_ambientOcclusion
+			// 
+			this.checkBox_ambientOcclusion.AutoSize = true;
+			this.checkBox_ambientOcclusion.Location = new System.Drawing.Point(8, 163);
+			this.checkBox_ambientOcclusion.Name = "checkBox_ambientOcclusion";
+			this.checkBox_ambientOcclusion.Size = new System.Drawing.Size(114, 17);
+			this.checkBox_ambientOcclusion.TabIndex = 14;
+			this.checkBox_ambientOcclusion.Text = "Ambient Occlusion";
+			this.checkBox_ambientOcclusion.UseVisualStyleBackColor = true;
 			// 
 			// checkBox_anisotropicFiltering
 			// 
@@ -657,16 +666,6 @@ namespace Umbra
 			this.button1.Text = "Clear save data";
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.button1_Click);
-			// 
-			// checkBox1
-			// 
-			this.checkBox_ambientOcclusion.AutoSize = true;
-			this.checkBox_ambientOcclusion.Location = new System.Drawing.Point(8, 163);
-			this.checkBox_ambientOcclusion.Name = "checkBox1";
-			this.checkBox_ambientOcclusion.Size = new System.Drawing.Size(114, 17);
-			this.checkBox_ambientOcclusion.TabIndex = 14;
-			this.checkBox_ambientOcclusion.Text = "Ambient Occlusion";
-			this.checkBox_ambientOcclusion.UseVisualStyleBackColor = true;
 			// 
 			// Launcher
 			// 

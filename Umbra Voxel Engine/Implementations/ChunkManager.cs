@@ -63,7 +63,7 @@ namespace Umbra.Implementations
 			InitializeThreads();
 
 			Chunks = new Chunk[Constants.World.WorldSize, Constants.World.WorldSize, Constants.World.WorldSize];
-			CenterIndex = new ChunkIndex(new BlockIndex(0, TerrainGenerator.GetLandscapeHeight((int)Constants.Player.Spawn.X, (int)Constants.Player.Spawn.Z), 0));
+			CenterIndex = new ChunkIndex(new BlockIndex(0, Math.Max(TerrainGenerator.GetLandscapeHeight((int)Constants.Player.Spawn.X, (int)Constants.Player.Spawn.Z), Constants.Landscape.WaterLevel), 0));
 
 			RenderHelp.CreateBlockData3DArray(out DataID);
 

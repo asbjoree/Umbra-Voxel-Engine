@@ -21,6 +21,8 @@ namespace Umbra.Structures.Graphics
 		static public int ResolutionID { get; private set; }
 		static public int TimeID { get; private set; }
 		static public int OffsetID { get; private set; }
+		static public int WorldSizeID { get; private set; }
+		static public int ChunkSizeID { get; private set; }
 
 
 		static private void GetVariables(int shaderProgram)
@@ -31,6 +33,8 @@ namespace Umbra.Structures.Graphics
 			ResolutionID = GL.GetUniformLocation(shaderProgram, "resolution");
 			TimeID = GL.GetUniformLocation(shaderProgram, "time");
 			OffsetID = GL.GetUniformLocation(shaderProgram, "offset");
+			WorldSizeID = GL.GetUniformLocation(shaderProgram, "world_size");
+			ChunkSizeID = GL.GetUniformLocation(shaderProgram, "chunk_size");
 		}
 	}
 

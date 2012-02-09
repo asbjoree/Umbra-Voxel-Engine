@@ -160,11 +160,6 @@ namespace Umbra.Utilities.Threading
 					Console.Write("VegetationQueue: " + VegetationQueue.Count);
 
 					// End Vegetate Chunk
-
-					if (VegetationQueue.Count == 0 && !Constants.Engines.Physics.Player.IsReleased)
-					{
-						Constants.Engines.Physics.Player.Release();
-					}
 				}
 			}
 		}
