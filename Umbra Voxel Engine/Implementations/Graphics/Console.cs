@@ -130,6 +130,11 @@ namespace Umbra.Implementations.Graphics
 			string[] args;
 			string command = FormatInput(inputString, out args);
 
+			if (command == "")
+			{
+				return;
+			}
+
 			if (displayInput)
 			{
 				AddMessage(new ConsoleMessage(inputString, LastTimeStamp, Color.White));

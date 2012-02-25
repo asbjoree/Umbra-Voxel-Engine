@@ -35,37 +35,26 @@ int eMod(int dividend, int divisor)
 
 bool GetArrayIndex(vec3 index, out ivec3 arrayIndex)
 {
-	
-	if(
-		(index.x < -(world_size / 2) * chunk_size) ||
-		(index.x > (world_size / 2) * chunk_size + 31) ||
-		(index.y < -(world_size / 2) * chunk_size) ||
-		(index.y > (world_size / 2) * chunk_size + 31) ||
-		(index.z < -(world_size / 2) * chunk_size) || 
-		(index.z > (world_size / 2) * chunk_size + 31)
-		)
-	{
-		return false; // Check if block is invalid, i.e. outside the world
-	}
 
-
-	//index -= offset;
 	ivec3 chunk;
 	chunk.x = int(floor(index.x / chunk_size));
 	chunk.y = int(floor(index.y / chunk_size));
 	chunk.z = int(floor(index.z / chunk_size));
 
-	if(index.x < 0)
+	chunk.x -= (index.x < 0) ? 1 : 0;
+	chunk.y -= (index.y < 0) ? 1 : 0;
+	chunk.z -= (index.z < 0) ? 1 : 0;
+		
+	if(
+		((chunk.x + 1) < offset.x) ||
+		((chunk.x + 1) > (offset.x + world_size)) ||
+		((chunk.y + 1) < offset.y) ||
+		((chunk.y + 1) > (offset.y + world_size)) ||
+		((chunk.z + 1) < offset.z) || 
+		((chunk.z + 1) > (offset.z + world_size))
+		)
 	{
-		chunk.x -= 1;
-	}
-	if(index.y < 0)
-	{
-		chunk.y -= 1;
-	}
-	if(index.z < 0)
-	{
-		chunk.z -= 1;
+		return false; // Check if block is invalid, i.e. outside the world
 	}
 
 	chunk.x = eMod(chunk.x, world_size);
@@ -172,18 +161,6 @@ vec4 GetRayColor(Ray ray)
 	while(safety < 200)
 	{
 		voxelOffset = floor(voxel) + vec3(0.5) - offset;
-
-		/*if(
-			(voxelOffset.x < -(world_size / 2) * chunk_size) ||
-			(voxelOffset.x > (world_size / 2) * chunk_size) ||
-			(voxelOffset.y < -(world_size / 2) * chunk_size) ||
-			(voxelOffset.y > (world_size / 2) * chunk_size) ||
-			(voxelOffset.z < -(world_size / 2) * chunk_size) || 
-			(voxelOffset.z > (world_size / 2) * chunk_size)
-			)
-		{
-			break;
-		}*/
 
 		IterateVoxel(voxel, ray, colorAccum);
 

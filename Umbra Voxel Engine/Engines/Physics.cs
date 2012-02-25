@@ -21,6 +21,7 @@ using Umbra.Definitions.Globals;
 using Umbra.Implementations.Graphics;
 using Console = Umbra.Implementations.Graphics.Console;
 
+
 namespace Umbra.Engines
 {
 	public class Physics : Engine
@@ -69,6 +70,19 @@ namespace Umbra.Engines
 					}
 				}
 			}
+		}
+
+		public override void Update(FrameEventArgs e)
+		{
+			if (!Variables.Player.NoclipEnabled && Constants.World.DynamicWorld)
+			{
+				if (new ChunkIndex(Constants.Engines.Physics.Player.Position) != new ChunkIndex(ChunkManager.WorldCenter))
+				{
+					ChunkManager.UpdateCenter(new ChunkIndex(Constants.Engines.Physics.Player.Position));
+				}
+			}
+
+			base.Update(e);
 		}
 
 		private void UpdateVelocity(PhysicsObject currentObject)

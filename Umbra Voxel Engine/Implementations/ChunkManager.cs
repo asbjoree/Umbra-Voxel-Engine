@@ -63,7 +63,7 @@ namespace Umbra.Implementations
 			InitializeThreads();
 
 			Chunks = new Chunk[Constants.World.WorldSize, Constants.World.WorldSize, Constants.World.WorldSize];
-			CenterIndex = new ChunkIndex(new BlockIndex(0, Math.Max(TerrainGenerator.GetLandscapeHeight((int)Constants.Player.Spawn.X, (int)Constants.Player.Spawn.Z), Constants.Landscape.WaterLevel), 0));
+			CenterIndex = new ChunkIndex(Constants.Engines.Physics.Player.Position);
 
 			RenderHelp.CreateBlockData3DArray(out DataID);
 
@@ -76,7 +76,7 @@ namespace Umbra.Implementations
 						Chunk chunk = ObtainChunk(CenterIndex + new ChunkIndex(x, y, z), true);
 						ChunkIndex? index = GetArrayIndex(CenterIndex + new ChunkIndex(x, y, z));
 						Chunks[index.Value.X, index.Value.Y, index.Value.Z] = chunk;
-						Utilities.Landscape.TerrainGenerator.SetChunkTerrain(chunk);
+						TerrainGenerator.SetChunkTerrain(chunk);
 						ChangeChunk(chunk);
 					}
 				}
@@ -95,7 +95,7 @@ namespace Umbra.Implementations
 			SetupThread.Abort();
 		}
 
-		static public void SetCenter(ChunkIndex centerIndex)
+		static public void UpdateCenter(ChunkIndex centerIndex)
 		{
 			for (int x = -Constants.World.WorldSize / 2; x <= Constants.World.WorldSize / 2; x++)
 			{
@@ -103,9 +103,10 @@ namespace Umbra.Implementations
 				{
 					for (int z = -Constants.World.WorldSize / 2; z <= Constants.World.WorldSize / 2; z++)
 					{
-						Chunk chunk = ObtainChunk(centerIndex + new ChunkIndex(x, y, z));
+						Chunk chunk = ObtainChunk(centerIndex + new ChunkIndex(x, y, z), true);
 						ChunkIndex? index = GetArrayIndex(centerIndex + new ChunkIndex(x, y, z), centerIndex);
 						Chunks[index.Value.X, index.Value.Y, index.Value.Z] = chunk;
+						ChangeChunk(chunk);
 					}
 				}
 			}
@@ -206,7 +207,8 @@ namespace Umbra.Implementations
 				}
 				else
 				{
-					Setup.AddToGeneration(chunk);
+					TerrainGenerator.SetChunkTerrain(chunk);
+					Console.Write("Chunk terrain generated!");
 				}
 			}
 
@@ -272,10 +274,13 @@ namespace Umbra.Implementations
 			if (arrayIndex.HasValue)
 			{
 				GL.BindTexture(TextureTarget.Texture3D, DataID);
+
 				GL.TexSubImage3D(TextureTarget.Texture3D, 0,
 					arrayIndex.Value.X * Constants.World.ChunkSize, arrayIndex.Value.Y * Constants.World.ChunkSize, arrayIndex.Value.Z * Constants.World.ChunkSize,
 					Constants.World.ChunkSize, Constants.World.ChunkSize, Constants.World.ChunkSize,
 					OpenTK.Graphics.OpenGL.PixelFormat.Luminance, PixelType.UnsignedByte, chunk.GetRawData());
+
+				GL.BindTexture(TextureTarget.Texture3D, 0);
 			}
 		}
 	}

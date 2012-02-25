@@ -155,7 +155,7 @@ namespace Umbra.Utilities.Landscape
 							{
 								if (relativeHeight == -1)
 								{
-									chunk[x, y, z] = Block.Grass;
+									chunk[x, y, z] = Block.Leaves;
 								}
 								else
 								{

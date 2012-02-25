@@ -71,6 +71,11 @@ namespace Umbra.Definitions
 			return new BlockIndex(X * Constants.World.ChunkSize, Y * Constants.World.ChunkSize, Z * Constants.World.ChunkSize);
 		}
 
+		public Vector3 ToVector3()
+		{
+			return new Vector3(X, Y, Z);
+		}
+
 		public float DistanceFromOrigo()
 		{
 			return (float)Math.Sqrt(Math.Pow(X * Constants.World.ChunkSize, 2) + Math.Pow(Y * Constants.World.ChunkSize, 2) + Math.Pow(Z * Constants.World.ChunkSize, 2));

@@ -20,60 +20,59 @@ using Console = Umbra.Implementations.Graphics.Console;
 
 namespace Umbra.Engines
 {
-    public class Main : GameWindow
-    {
-        List<Engine> Engines;
+	public class Main : GameWindow
+	{
+		List<Engine> Engines;
 
-        public Main(GraphicsMode mode, string title, GameWindowFlags flags)
-            : base((int)Constants.Graphics.ScreenResolution.X, (int)Constants.Graphics.ScreenResolution.Y, mode, title, flags)
-        {
-            Engines = new List<Engine>();
-            Constants.SetupEngines(this);
+		public Main(GraphicsMode mode, string title, GameWindowFlags flags)
+			: base((int)Constants.Graphics.ScreenResolution.X, (int)Constants.Graphics.ScreenResolution.Y, mode, title, flags)
+		{
+			Engines = new List<Engine>();
+			Constants.SetupEngines(this);
 			Constants.Engines.Input.SetMouseShow(false);
-        }
+		}
 			
-        public void AddEngine(Engine engine)
-        {
-            Engines.Add(engine);
-            engine.SetGame(this);
-        }
+		public void AddEngine(Engine engine)
+		{
+			Engines.Add(engine);
+			engine.SetGame(this);
+		}
 
-        protected override void OnLoad(EventArgs e)
-        {
-            foreach (Engine engine in Engines)
-            {
-                engine.Initialize(e);
-            }
+		protected override void OnLoad(EventArgs e)
+		{
+			foreach (Engine engine in Engines)
+			{
+				engine.Initialize(e);
+			}
 
-            Variables.Game.IsInitialized = true;
-            base.OnLoad(e);
-        }
+			Variables.Game.IsInitialized = true;
+			base.OnLoad(e);
+		}
 
-        protected override void OnUpdateFrame(FrameEventArgs e)
-        {
+		protected override void OnUpdateFrame(FrameEventArgs e)
+		{
+			foreach (Engine engine in Engines)
+			{
+				engine.Update(e);
+			}
 
-            foreach (Engine engine in Engines)
-            {
-                engine.Update(e);
-            }
+			base.OnUpdateFrame(e);
+		}
 
-            base.OnUpdateFrame(e);
-        }
+		protected override void OnRenderFrame(FrameEventArgs e)
+		{
+			GL.ClearColor(Variables.Graphics.ScreenClearColor);
+			GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-        protected override void OnRenderFrame(FrameEventArgs e)
-        {
-            GL.ClearColor(Variables.Graphics.ScreenClearColor);
-            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
+			foreach (Engine engine in Engines)
+			{
+				engine.Render(e);
+			}
 
-            foreach (Engine engine in Engines)
-            {
-                engine.Render(e);
-            }
+			GL.Finish();
+			SwapBuffers();
 
-            GL.Finish();
-            SwapBuffers();
-
-            base.OnRenderFrame(e);
-        }
-    }
+			base.OnRenderFrame(e);
+		}
+	}
 }

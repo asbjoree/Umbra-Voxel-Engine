@@ -56,30 +56,16 @@ namespace Umbra.Structures
 
 		public void Initialize()
 		{
-			Position = new Vector3d(Constants.Player.Spawn.X, Math.Max(TerrainGenerator.GetLandscapeHeight((int)Constants.Player.Spawn.X, (int)Constants.Player.Spawn.Z), Constants.Landscape.WaterLevel), Constants.Player.Spawn.Z);
+			Position = new Vector3d(Constants.Player.Spawn.X, TerrainGenerator.GetLandscapeHeight((int)Constants.Player.Spawn.X, (int)Constants.Player.Spawn.Z), Constants.Player.Spawn.Z);
 
 			IsReleased = true;
 			Variables.Player.NoclipEnabled = false;
 			PhysicsEnabled = true;
-
-			ChunkManager.SetCenter(new ChunkIndex(Position));
 		}
 
 		public override void Update()
 		{
-
 			PhysicsEnabled = !Variables.Player.NoclipEnabled;
-
-			if (!Variables.Player.NoclipEnabled && Constants.World.DynamicWorld)
-			{
-				//if (new ChunkIndex(Position) != new ChunkIndex(ChunkManager.WorldCenter))
-				//{
-				//    if ((Position - ChunkManager.WorldCenter).Length > Constants.World.UpdateLengthFromCenter)
-				//    {
-				//        ChunkManager.SetCenter(new ChunkIndex(Position));
-				//    }
-				//}
-			}
 
 			UpdateMovement();
 			UpdateCamera();

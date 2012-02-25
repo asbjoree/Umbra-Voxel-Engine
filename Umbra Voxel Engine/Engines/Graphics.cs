@@ -68,7 +68,7 @@ namespace Umbra.Engines
 			GL.Uniform1(Shaders.WorldSizeID, Constants.World.WorldSize);
 			GL.Uniform1(Shaders.ChunkSizeID, Constants.World.ChunkSize);
 
-			GL.Uniform3(Shaders.OffsetID, (Vector3)ChunkManager.CenterIndex.Position);
+			GL.Uniform3(Shaders.OffsetID, ChunkManager.MinLoaded.ToVector3());
 
 			GL.BindTexture(TextureTarget.Texture3D, ChunkManager.DataID);
 
